@@ -21,6 +21,14 @@ def print_result(page_result):
         search_herf = "https://travel.ettoday.net/category/%E5%8F%B0%E4%B8%AD/?&page="
         search_herf = search_herf+str(pages)
         test = web_html(search_herf, pages)
+        # print(test[1])
+        if test[1]:  # 如果回傳為空值直接跳出回全帶鰾後面幾頁沒有資料了
+            # print(test[1])
+            if pages == page_result:
+                print("一共"+str(pages)+"頁")
+        else:
+            print("一共"+str(pages-1)+"頁")
+            break
 
 
 def web_html(page, test):
@@ -32,21 +40,21 @@ def web_html(page, test):
         print("ETtoday旅遊雲,第"+str(test)+"頁網址:"+page)
         print()
     else:
-        print(soup)
-    return(page)
+        print()
+    return(page, exsist)
 
 
 def get_title(soup):
     result = soup.find_all("div", itemprop="itemListElement")
-
-    for title in result:
-        print(title.select_one("a").get("title"))
-        print(title.select_one("a").get("href"))
+    # print(result)
     if not result:
         exsist_bool = False
         return(exsist_bool)
     else:
         exsist_bool = True
+        for title in result:
+            print(title.select_one("a").get("title"))
+            print(title.select_one("a").get("href"))
         return(exsist_bool)
 
 
