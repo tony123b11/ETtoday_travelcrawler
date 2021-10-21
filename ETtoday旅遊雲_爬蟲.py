@@ -22,7 +22,7 @@ def print_result(page_result):
         search_herf = search_herf+str(pages)
         test = web_html(search_herf, pages)
         # print(test[1])
-        if test[1]:  # 如果回傳為空值直接跳出回全帶鰾後面幾頁沒有資料了
+        if test[1]:  # 如果回傳為空值直接跳出回全帶鰾後面幾頁沒有資料了!
             # print(test[1])
             if pages == page_result:
                 print("一共"+str(pages)+"頁")
